@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Абдухаким & Юсуф — год дружбы</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Rubik:ital,wght@0,400;0,500;0,700;1,400&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#F7E7DF;      /* розовый мрамор мечети */
+  --rose2:#EFD3C8;
+  --ink:#1B3A3C;       /* глубокий бирюзово-тёмный */
+  --ink2:#2F5658;
+  --gold:#C9A24B;
+  --gold2:#E7C978;
+  --red:#8E2B3A;
+  --white:#FFFDFB;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Rubik',system-ui,sans-serif;background:var(--rose);color:var(--ink);line-height:1.5;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:'Unbounded',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.05}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+section{padding:64px 20px}
+.wrap{max-width:760px;margin:0 auto}
+h2{font-size:clamp(28px,7vw,44px);margin-bottom:8px}
+.sub{color:var(--ink2);font-size:17px;margin-bottom:28px;max-width:520px}
+
+/* ---------- pattern (girih-ish) ---------- */
+.pattern{
+  background-color:var(--ink);
+  background-image:
+    linear-gradient(30deg,transparent 46%,rgba(201,162,75,.18) 46% 54%,transparent 54%),
+    linear-gradient(150deg,transparent 46%,rgba(201,162,75,.18) 46% 54%,transparent 54%),
+    linear-gradient(90deg,transparent 46%,rgba(201,162,75,.18) 46% 54%,transparent 54%);
+  background-size:40px 69px;
+  color:var(--rose);
+}
+
+/* ---------- hero ---------- */
+.hero{padding:0;position:relative;min-height:100svh;display:grid;grid-template-rows:1fr auto;background:var(--ink);color:var(--rose)}
+.hero-img{position:absolute;left:0;right:0;top:0;height:64%;overflow:hidden}
+.hero-img img{width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:.7}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,58,60,.15) 0%,rgba(27,58,60,.2) 60%,var(--ink) 100%)}
+.hero-top{position:relative;padding:24px 20px;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--gold2)}
+.hero-body{position:relative;padding:0 20px 56px;max-width:760px;margin:0 auto;width:100%}
+.hero h1{font-size:clamp(38px,11vw,88px);color:var(--white)}
+.hero h1 .amp{color:var(--gold);font-weight:400;font-family:'Amiri',serif;font-style:italic}
+.days{margin-top:28px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.days .n{font-family:'Unbounded';font-weight:800;font-size:clamp(64px,20vw,140px);line-height:.9;color:var(--gold2);font-variant-numeric:tabular-nums}
+.days .l{font-size:18px;max-width:200px;line-height:1.25}
+.live{font-variant-numeric:tabular-nums;color:var(--gold2);font-size:15px;margin-top:10px;opacity:.9}
+.scroll{position:relative;text-align:center;padding:0 0 22px;font-size:13px;color:var(--gold2);opacity:.8}
+.scroll span{display:block;width:1px;height:28px;background:var(--gold);margin:8px auto 0;animation:drop 1.6s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- countdown ---------- */
+.count{background:var(--gold);color:var(--ink);padding:18px 20px}
+.count .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.count b{font-family:'Unbounded';font-size:20px}
+.count .t{display:flex;gap:14px;font-variant-numeric:tabular-nums}
+.count .t div{text-align:center}
+.count .t i{display:block;font-style:normal;font-family:'Unbounded';font-size:24px;font-weight:600}
+.count .t small{font-size:11px}
+.count.today{background:var(--red);color:#fff;text-align:center}
+
+/* ---------- who ---------- */
+.who{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:var(--white);border-radius:22px;overflow:hidden;box-shadow:0 12px 30px -18px rgba(27,58,60,.5);position:relative}
+.card .ph{aspect-ratio:1/1;position:relative;overflow:hidden}.card .ph img{position:absolute;width:200%;max-width:none;top:-7%}
+.card figcaption{padding:12px 14px 16px}
+.card .name{font-family:'Unbounded';font-weight:600;font-size:16px}
+.card .tag{font-size:13px;color:var(--ink2);margin-top:2px}
+.swap{margin-top:16px;width:100%;background:var(--ink);color:var(--gold2);padding:14px;border-radius:16px;font-weight:500;font-size:16px}
+.swap:active{transform:scale(.98)}
+.who.swapped .card:first-child{order:2}
+
+/* ---------- memes (scratch/flip) ---------- */
+.memes{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.meme{perspective:1000px;aspect-ratio:1/1.1}
+.meme .in{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;border-radius:18px}
+.meme.open .in{transform:rotateY(180deg)}
+.meme .f,.meme .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.meme .f{background:var(--white);box-shadow:0 10px 24px -16px rgba(27,58,60,.6)}
+.meme .f .num{font-size:12px;color:var(--gold);font-weight:700}
+.meme .f .t{font-family:'Unbounded';font-weight:800;font-size:clamp(18px,5vw,26px);line-height:1;word-break:break-word}
+.meme .f .hint{font-size:12px;color:var(--ink2)}
+.meme .b{background:var(--ink);color:var(--rose);transform:rotateY(180deg);font-size:14px;line-height:1.35}
+.meme .b .t{font-family:'Unbounded';font-weight:600;font-size:14px;color:var(--gold2);margin-bottom:6px}
+.meme .b .t2{font-size:11px;opacity:.6;font-style:italic}
+.meme.gold .f{background:var(--gold);color:var(--ink)}
+.meme.gold .f .num,.meme.gold .f .hint{color:var(--ink)}
+.meme.big{grid-column:span 2;aspect-ratio:2/1}
+.meme.big .f .t{font-size:clamp(26px,8vw,40px)}
+.sit{margin-top:18px;background:var(--white);border-radius:22px;padding:20px;text-align:center}
+.sit .n{font-family:'Unbounded';font-weight:800;font-size:52px;line-height:1;color:var(--red)}
+.sit p{font-size:14px;color:var(--ink2);margin:6px 0 14px}
+.sit button{background:var(--red);color:#fff;padding:14px 26px;border-radius:999px;font-weight:700;font-size:17px;transition:transform .1s}
+.sit button:active{transform:scale(.94)}
+
+/* ---------- gallery ---------- */
+.gal{columns:2;column-gap:10px}
+.gal figure{break-inside:avoid;margin-bottom:10px;border-radius:14px;overflow:hidden;background:var(--white);cursor:zoom-in;position:relative}
+.gal figure img{width:100%}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 10px 8px;font-size:12px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+.lb{position:fixed;inset:0;background:rgba(27,58,60,.96);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;flex-direction:column;gap:12px}
+.lb.on{display:flex}
+.lb img{max-height:80vh;max-width:100%;border-radius:12px;object-fit:contain}
+.lb p{color:var(--rose);text-align:center;font-size:15px;max-width:520px}
+.lb .x{position:absolute;top:14px;right:16px;color:var(--gold2);font-size:32px;line-height:1}
+
+/* ---------- quiz ---------- */
+.quiz{background:var(--white);border-radius:22px;padding:22px;box-shadow:0 12px 30px -18px rgba(27,58,60,.5)}
+.bubble{background:#2b3a48;color:#fff;border-radius:18px 18px 18px 4px;padding:14px 16px;font-weight:500;font-size:17px;margin:10px 0 18px;max-width:90%;text-transform:uppercase}
+.qbtn{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qbtn button{padding:14px;border-radius:14px;background:var(--rose);font-weight:600;font-size:16px;border:2px solid transparent}
+.qbtn button.ok{background:#d8efd6;border-color:#4d9a5c}
+.qbtn button.no{background:#f6d5d5;border-color:var(--red)}
+.qres{margin-top:14px;font-size:15px;min-height:22px}
+.qscore{font-size:13px;color:var(--ink2);margin-top:10px}
+
+/* ---------- deen ---------- */
+.deen{padding:72px 20px}
+.deen h2{color:var(--gold2)}
+.deen .sub{color:var(--rose2)}
+.ayah{background:rgba(255,253,251,.06);border:1px solid rgba(201,162,75,.45);border-radius:24px;padding:28px 22px;text-align:center}
+.ayah .ar{font-family:'Amiri',serif;font-size:clamp(30px,8vw,48px);line-height:1.6;direction:rtl;color:var(--gold2)}
+.ayah .ru{font-size:18px;margin:14px 0 6px;line-height:1.4}
+.ayah .src{font-size:13px;opacity:.65}
+.ayah .next{margin-top:20px;border:1px solid var(--gold);color:var(--gold2);padding:10px 20px;border-radius:999px;font-size:14px}
+.dua{margin-top:28px;text-align:center}
+.dua button{background:var(--gold);color:var(--ink);padding:16px 26px;border-radius:999px;font-family:'Unbounded';font-weight:600;font-size:15px}
+.dua .out{margin-top:16px;font-size:17px;line-height:1.5;min-height:28px}
+.dua .out .ar{font-family:'Amiri',serif;font-size:30px;direction:rtl;display:block;color:var(--gold2)}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.35}
+.dots i.on{opacity:1}
+
+/* ---------- letter ---------- */
+.letter{background:var(--white);border-radius:24px;padding:28px 22px;font-size:17px;line-height:1.6}
+.letter p+p{margin-top:12px}
+.letter .sig{font-family:'Unbounded';font-weight:600;margin-top:20px;font-size:15px}
+.stamp{display:inline-block;transform:rotate(-6deg);border:2px solid var(--red);color:var(--red);padding:4px 10px;border-radius:6px;font-family:'Unbounded';font-size:12px;font-weight:600;margin-top:14px}
+
+.deck{perspective:1200px}
+.dcard{background:var(--ink);color:var(--rose);border-radius:24px;min-height:220px;padding:26px 22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 18px 40px -20px rgba(27,58,60,.7);transition:transform .35s;cursor:pointer}
+.dcard.flip{animation:dflip .45s}
+@keyframes dflip{0%{transform:rotateY(0)}50%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
+.dn{font-size:13px;color:var(--gold2)}
+.dq{font-family:'Unbounded';font-weight:600;font-size:clamp(18px,5vw,24px);line-height:1.25}
+.drow{display:flex;align-items:center;gap:14px;margin-top:14px}
+.dbtn{background:var(--gold);color:var(--ink);padding:14px 22px;border-radius:999px;font-weight:700;font-size:16px}
+.dbtn:active{transform:scale(.97)}
+.dleft{font-size:13px;color:var(--ink2)}
+.who-pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.who-pick button{padding:14px;border-radius:14px;background:var(--rose);font-weight:600;font-size:16px;border:2px solid transparent}
+.who-pick button.on{border-color:var(--ink);background:var(--white)}
+.mprog{font-size:13px;color:var(--ink2)}
+.mq{font-family:'Unbounded';font-weight:600;font-size:20px;line-height:1.25;margin:10px 0 16px}
+.mopts{display:grid;gap:10px}
+.mopts button{padding:14px;border-radius:14px;background:var(--rose);font-weight:500;font-size:16px;text-align:left}
+.mopts button:active{background:var(--rose2)}
+.mres{margin-bottom:16px}
+.mres .big{font-family:'Unbounded';font-weight:800;font-size:64px;line-height:1;color:var(--red)}
+.mres .row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--rose2);font-size:14px}
+.mres .row b{font-weight:500}
+.mres .row .ok{color:#2f7a3e}.mres .row .no{color:var(--red)}
+.mlink{margin-top:10px;font-size:12px;word-break:break-all;color:var(--ink2);max-height:60px;overflow:auto}
+.mreset{margin-top:12px;font-size:14px;color:var(--ink2);text-decoration:underline}
+.cap{background:var(--white);border-radius:22px;padding:22px;box-shadow:0 12px 30px -18px rgba(27,58,60,.5)}
+.cap textarea{width:100%;font:inherit;font-size:16px;padding:14px;border-radius:14px;border:2px solid var(--rose2);background:var(--rose);resize:vertical;margin-bottom:12px;color:var(--ink)}
+.cap textarea:focus{outline:0;border-color:var(--gold)}
+.lock{font-size:48px;text-align:center}
+.lockt{font-family:'Unbounded';font-weight:600;font-size:18px;text-align:center;margin-top:6px}
+.lockd{text-align:center;font-size:14px;color:var(--ink2);margin-top:4px}
+.lockc{font-family:'Unbounded';font-weight:800;font-size:28px;text-align:center;margin:14px 0;font-variant-numeric:tabular-nums;color:var(--red)}
+#capLocked .dbtn{display:block;margin:0 auto}
+.captext{margin-top:14px;font-size:18px;line-height:1.5;white-space:pre-wrap}
+
+
+.story{position:relative;background:var(--ink);border-radius:22px;overflow:hidden;aspect-ratio:4/5;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.story img{width:100%;height:100%;object-fit:contain;background:#12282a;pointer-events:none}
+.sbars{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:3px;z-index:2}
+.sbars i{flex:1;height:3px;background:rgba(255,255,255,.3);border-radius:2px;overflow:hidden}
+.sbars i b{display:block;height:100%;width:0;background:var(--gold2)}
+.sbars i.done b{width:100%}
+.sbars i.cur b{animation:sfill var(--dur,4.5s) linear forwards}
+.story.paused .sbars i.cur b{animation-play-state:paused}
+@keyframes sfill{from{width:0}to{width:100%}}
+.scap{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 16px;color:#fff;font-size:15px;font-weight:500;background:linear-gradient(transparent,rgba(0,0,0,.7));z-index:2;pointer-events:none}
+.szone{position:absolute;top:0;bottom:0;width:50%;z-index:3}
+.szone.l{left:0}.szone.r{right:0}
+.shint{position:absolute;top:24px;left:0;right:0;text-align:center;font-size:12px;color:var(--gold2);z-index:2;pointer-events:none;transition:opacity 1s}
+.strip{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:4px;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.strip button{flex:0 0 56px;height:56px;border-radius:10px;overflow:hidden;opacity:.5;border:2px solid transparent;padding:0}
+.strip button.on{opacity:1;border-color:var(--gold)}
+.strip img{width:100%;height:100%;object-fit:cover}
+.lab{background:var(--white);border-radius:24px;padding:22px 20px;margin-bottom:16px;box-shadow:0 12px 30px -18px rgba(27,58,60,.5)}
+.labhead{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink2)}
+.stamp2{border:1.5px solid var(--ink2);border-radius:6px;padding:2px 8px;font-size:11px;font-weight:600;transform:rotate(-2deg)}
+.stamp2.done{border-color:var(--red);color:var(--red)}
+.labt{font-size:24px;margin:8px 0 6px}
+.labp{font-size:15px;color:var(--ink2);margin:12px 0 10px}
+.simrow{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px}
+.simrow input{width:110px;font:inherit;font-size:20px;font-weight:700;padding:8px 10px;border-radius:12px;border:2px solid var(--rose2);background:var(--rose);text-align:center;color:var(--ink)}
+.simrow input:focus{outline:0;border-color:var(--gold)}
+.simbar,.kmbbar{height:14px;background:var(--rose);border-radius:99px;overflow:hidden;margin:12px 0 8px}
+.simbar i,.kmbbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--gold));border-radius:99px;transition:width .5s cubic-bezier(.3,1.3,.5,1)}
+.simv{font-size:14px}.simv b{font-family:'Unbounded';font-size:20px;color:var(--red)}
+.simv span{color:var(--ink2)}
+.simchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.simchips button,.kmb button{padding:8px 14px;border-radius:99px;background:var(--rose);font-weight:600;font-size:15px;border:2px solid transparent}
+.simchips button:active,.kmb button.on{border-color:var(--ink);background:var(--white)}
+.chatx{background:var(--rose);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:8px;min-height:60px}
+.bub{max-width:82%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.3;animation:pop .3s}
+.bub.in{background:var(--white);align-self:flex-start;border-bottom-left-radius:4px}
+.bub.out{background:var(--ink);color:var(--rose);align-self:flex-end;border-bottom-right-radius:4px}
+.bub.sys{align-self:center;font-size:12px;color:var(--ink2);background:none;padding:2px}
+@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+.chatx .dbtn{align-self:center}
+.ans{display:flex;gap:8px;justify-content:flex-end}
+.ans button{padding:8px 16px;border-radius:99px;background:var(--ink);color:var(--rose);font-weight:600;font-size:15px}
+.verdict{margin-top:14px;font-family:'Unbounded';font-weight:600;font-size:15px;color:var(--red);min-height:0;line-height:1.3}
+.ufig{text-align:center}
+.ufig svg{width:60%;max-width:220px;height:auto}
+.ulab{display:flex;align-items:center;gap:10px;justify-content:center;font-size:13px;color:var(--ink2)}
+.ulab input{flex:1;max-width:220px;accent-color:var(--red)}
+.unote{font-size:14px;margin-top:8px;color:var(--ink2);text-align:center;min-height:20px}
+.kmb{display:flex;gap:6px;flex-wrap:wrap}
+.kmb button{font-family:'Unbounded';font-weight:600}
+.week{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:6px 0 12px}
+.week b{width:42px;height:42px;border-radius:12px;background:var(--ink);color:var(--gold2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;transition:all .5s;overflow:hidden}
+.week.one b:not(:first-child){width:0;opacity:0;margin-left:-6px}
+.week.one b:first-child{background:var(--red);color:#fff;width:100px}
+.tog{display:flex;align-items:center;gap:10px;justify-content:center;font-size:15px;font-weight:500}
+.tog input{width:22px;height:22px;accent-color:var(--red)}
+.calc2{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.calc2 input{width:64px;font:inherit;font-size:20px;font-weight:700;padding:8px;border-radius:12px;border:2px solid var(--rose2);background:var(--rose);text-align:center;color:var(--ink)}
+.calc2 button{font-family:'Unbounded';font-size:18px;padding:8px 16px;border-radius:12px;background:var(--gold);color:var(--ink)}
+.calc2 output{font-weight:600;font-size:15px;flex-basis:100%;color:var(--red);min-height:20px}
+footer{padding:40px 20px;text-align:center;font-size:13px;color:var(--ink2)}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-img"><img src="img/11.jpg" alt="Абдухаким и Юсуф"></div>
+  <div class="hero-top"><span>Ташкент</span><span>с 15.09.2025</span></div>
+  <div class="hero-body">
+    <h1>Абдухаким<br><span class="amp">&amp;</span> Юсуф</h1>
+    <div class="days">
+      <div class="n" id="days">0</div>
+      <div class="l">дней дружбы, и это только начало</div>
+    </div>
+    <div class="live" id="live"></div>
+  </div>
+  <div class="scroll">листай<span></span></div>
+</header>
+
+<div class="count" id="count">
+  <div class="wrap">
+    <b id="cTitle">До годовщины</b>
+    <div class="t" id="cTimer"></div>
+  </div>
+</div>
+
+<!-- WHO -->
+<section>
+  <div class="wrap">
+    <h2>Кто есть кто</h2>
+    <p class="sub">Один в белом, другой в бордовом. Кнопка внизу — на случай, если перепутал.</p>
+    <div class="who" id="who">
+      <figure class="card">
+        <div class="ph"><img src="img/10.jpg" alt="Юсуф" style="left:-44%"></div>
+        <figcaption><div class="name">Юсуф</div><div class="tag">в белом · автор фразы «я тебе не изменял»</div></figcaption>
+      </figure>
+      <figure class="card">
+        <div class="ph"><img src="img/10.jpg" alt="Абдухаким" style="left:-4%"></div>
+        <figcaption><div class="name">Абдухаким</div><div class="tag">в бордовом · спрашивает у ботов про отца</div></figcaption>
+      </figure>
+    </div>
+    <button class="swap" id="swap">Поменять местами</button>
+  </div>
+</section>
+
+<!-- MEMES -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Топ‑10 мемов</h2>
+    <p class="sub">Нажми на карточку. Расшифровка внутри — понятна только двоим.</p>
+    <div class="memes" id="memes">
+      <div class="meme"><div class="in"><div class="f"><span class="num">#1</span><span class="t">Фай эркин</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">Фай эркин</div>Сказано один раз. Повторяется уже год.</div><div class="t2">история известна двоим</div></div></div></div>
+      <div class="meme gold"><div class="in"><div class="f"><span class="num">#2</span><span class="t">15</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">15</div>Число, с которого всё началось. 15 сентября — и понеслось.</div><div class="t2">священное число</div></div></div></div>
+      <div class="meme"><div class="in"><div class="f"><span class="num">#3</span><span class="t">true fat</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">true fat</div>188 сообщений со словом «жирный». Мы проверяли. Скрин в галерее.</div><div class="t2">вери биг жирного</div></div></div></div>
+      <div class="meme"><div class="in"><div class="f"><span class="num">#4</span><span class="t">hitoy</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">hitoy</div>Xitoy. Китай. Не спрашивай.</div><div class="t2">ни хао</div></div></div></div>
+      <div class="meme"><div class="in"><div class="f"><span class="num">#5</span><span class="t">6.1</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">6.1</div>Не 6. Не 6.2. Ровно 6.1 — и точка.</div><div class="t2">точность важна</div></div></div></div>
+      <div class="meme gold"><div class="in"><div class="f"><span class="num">#6</span><span class="t">2011</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">2011</div>Год, который лучше не вспоминать. Но мы вспоминаем. Каждый день.</div><div class="t2">архивная съёмка в галерее</div></div></div></div>
+      <div class="meme"><div class="in"><div class="f"><span class="num">#7</span><span class="t">магнит</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">магнит</div>Притягивает. Что именно — секрет.</div><div class="t2">физика дружбы</div></div></div></div>
+      <div class="meme"><div class="in"><div class="f"><span class="num">#8</span><span class="t">батя девственник</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">батя девственник</div>Логическая ошибка, которая стала мемом. Мы не объясняем — мы цитируем.</div><div class="t2">парадокс</div></div></div></div>
+      <div class="meme"><div class="in"><div class="f"><span class="num">#9</span><span class="t">батя</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">батя</div>«Отца поешь» — фраза, из-за которой даже нейросеть послала нас готовить самим.</div><div class="t2">скрин в галерее</div></div></div></div>
+      <div class="meme big gold"><div class="in"><div class="f"><span class="num">#10</span><span class="t">ещё посидим</span><span class="hint">нажми</span></div><div class="b"><div><div class="t">ещё посидим</div>Фраза, после которой домой никто не идёт минимум час. Счётчик ниже.</div><div class="t2">главный мем</div></div></div></div>
+    </div>
+    <div class="sit">
+      <div class="n" id="sitN">0</div>
+      <p id="sitP">раз сказали «ещё посидим» за время просмотра этой страницы</p>
+      <button id="sitBtn">Ещё посидим</button>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Архив</h2>
+    <p class="sub">Селфи в автобусах, мечети и один клон-отряд. Смотри как сторис.</p>
+    <div class="story" id="story">
+      <div class="sbars" id="sbars"></div>
+      <img id="simg" alt="">
+      <div class="scap" id="scap"></div>
+      <div class="szone l" id="sprev"></div><div class="szone r" id="snext"></div>
+      <div class="shint" id="shint">тап справа — дальше, слева — назад, удержи — пауза</div>
+    </div>
+    <div class="strip" id="strip"></div>
+    <script>const STORIES=[{"s": "img/2.jpg", "c": "Отряд клонов в одной кепке"}, {"s": "img/4.jpg", "c": "Улыбка сквозь кровь"}, {"s": "img/6.jpg", "c": "188 сообщений. Одно слово."}, {"s": "img/12.jpg", "c": "Нейрохам не принял фото"}, {"s": "img/1.jpg", "c": "Автобусный ракурс № 1"}, {"s": "img/7.jpg", "c": "«Я тебе не изменял»"}, {"s": "img/8.jpg", "c": "2011. BOSS."}, {"s": "img/3.jpg", "c": "Автобусный ракурс № 2"}, {"s": "img/5.jpg", "c": "Кепка задом наперёд — стиль"}, {"s": "img/13.jpg", "c": "Студийная серьёзность"}, {"s": "img/9.jpg", "c": "Случайный кадр в автобусе"}, {"s": "img/10.jpg", "c": "В мечети"}];</script>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Кто это написал?</h2>
+    <p class="sub">Реальные сообщения из переписки. Угадай автора.</p>
+    <div class="quiz">
+      <div class="bubble" id="qText"></div>
+      <div class="qbtn"><button data-a="Ю">Юсуф</button><button data-a="А">Абдухаким</button></div>
+      <div class="qres" id="qRes"></div>
+      <div class="qscore" id="qScore"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEEN -->
+<section class="deen pattern">
+  <div class="wrap">
+    <h2>Братья по вере</h2>
+    <p class="sub">То, что делает эту дружбу не просто дружбой.</p>
+    <div class="ayah" id="ayah">
+      <div class="ar" id="aAr"></div>
+      <div class="ru" id="aRu"></div>
+      <div class="src" id="aSrc"></div>
+      <div class="dots" id="aDots"></div>
+      <button class="next" id="aNext">Следующее</button>
+    </div>
+    <div class="dua">
+      <button id="duaBtn">Сделать дуа за друга</button>
+      <div class="out" id="duaOut"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Научный отдел</h2>
+    <p class="sub">Три спора этой дружбы. Три эксперимента. Три вердикта.</p>
+
+    <div class="lab">
+      <div class="labhead"><span class="labn">Дело № 1</span><span class="stamp2" id="st1">на рассмотрении</span></div>
+      <h3 class="labt">«С» — это не «оке»</h3>
+      <p class="labp">Юсуф отвечает «С» и считает, что это «оке». Проверим сходство.</p>
+      <div class="sim">
+        <div class="simrow"><span>Введи, что тебе написали</span><input id="simIn" maxlength="12" value="С"></div>
+        <div class="simbar"><i id="simFill"></i></div>
+        <div class="simv"><b id="simPct">0 %</b> сходства с «оке» <span id="simNote">— общих букв нет, общих звуков нет</span></div>
+        <div class="simchips"><button data-s="С">С</button><button data-s="оке">оке</button><button data-s="окей">окей</button><button data-s="ок">ок</button><button data-s="7">7</button></div>
+      </div>
+      <p class="labp">Полевой эксперимент — спросим у автора:</p>
+      <div class="chatx" id="chat1"><button class="dbtn" id="ask1">Спросить Юсуфа</button></div>
+      <div class="verdict" id="v1"></div>
+    </div>
+
+    <div class="lab">
+      <div class="labhead"><span class="labn">Дело № 2</span><span class="stamp2" id="st2">на рассмотрении</span></div>
+      <h3 class="labt">U — это магнит</h3>
+      <p class="labp">Две ножки, дуга снизу, открыт сверху. Проведи ползунок и найди отличия.</p>
+      <div class="ufig">
+        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="ug" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--ink)"/><stop offset="1" stop-color="var(--ink)"/></linearGradient></defs>
+          <path d="M50 18 V85 a50 50 0 0 0 100 0 V18" fill="none" stroke="#8a8f99" stroke-width="24" id="uBase" style="opacity:0"/>
+          <path d="M50 18 V85 a50 50 0 0 0 100 0 V18" fill="none" stroke="var(--ink)" stroke-width="24" id="uInk"/>
+          <path d="M50 18 V55" stroke="#3b6fc9" stroke-width="24" id="uN" style="opacity:0"/>
+          <path d="M150 18 V55" stroke="#c93b3b" stroke-width="24" id="uS" style="opacity:0"/>
+          <text x="50" y="42" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" id="tN" style="opacity:0">N</text>
+          <text x="150" y="42" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" id="tS" style="opacity:0">S</text>
+          <g id="fil" style="opacity:0"><path d="M20 30 l-8 -6 M18 45 l-10 -2 M182 30 l8 -6 M182 45 l10 -2" stroke="var(--gold)" stroke-width="2" stroke-linecap="round"/></g>
+        </svg>
+        <div class="ulab"><span>Буква U</span><input type="range" id="uMorph" min="0" max="100" value="0"><span>Магнит</span></div>
+        <div class="unote" id="uNote">Отличий: буква</div>
+      </div>
+      <p class="labp">Коэффициент магнитности других букв — нажми, чтобы сравнить:</p>
+      <div class="kmb" id="kmb">
+        <button data-k="100" data-t="две ножки, дуга, открыт сверху — магнит">U</button>
+        <button data-k="66" data-t="ножки есть, дуги нет — сломанный магнит">V</button>
+        <button data-k="33" data-t="дуга есть, но замкнут — магнит без выхода">O</button>
+        <button data-k="0" data-t="одна ножка — палка">I</button>
+        <button data-k="33" data-t="контрольная группа. половина Юсуфа">Ю</button>
+        <button data-k="0" data-t="это не буква, это семёрка">7</button>
+      </div>
+      <div class="kmbbar"><i id="kmbFill"></i></div>
+      <div class="simv"><b id="kmbPct">100 %</b> магнитности <span id="kmbT">— две ножки, дуга, открыт сверху — магнит</span></div>
+      <div class="verdict" id="v2"></div>
+    </div>
+
+    <div class="lab">
+      <div class="labhead"><span class="labn">Дело № 3</span><span class="stamp2" id="st3">на рассмотрении</span></div>
+      <h3 class="labt">7 — это не «да»</h3>
+      <p class="labp">Допустим, 7 = «да». «Да» — это истина, то есть 1. Значит 7 = 1. Что тогда с неделей?</p>
+      <div class="week" id="week"><b>Пн</b><b>Вт</b><b>Ср</b><b>Чт</b><b>Пт</b><b>Сб</b><b>Вс</b></div>
+      <label class="tog"><input type="checkbox" id="tog7"><span>Допустить, что 7 = да</span></label>
+      <div class="unote" id="wNote">7 дней. Суббота на месте — мы в неё сидели.</div>
+      <p class="labp">Проверка арифметикой:</p>
+      <div class="calc2"><input id="c1" type="number" value="7"><span>+</span><input id="c2" type="number" value="7"><button id="cEq">=</button><output id="cOut">?</output></div>
+      <p class="labp">И наконец — ответь на вопрос как Юсуф:</p>
+      <div class="chatx" id="chat3"><div class="bub in">Ты идёшь?</div><div class="ans"><button data-a="7">7</button><button data-a="да">да</button><button data-a="С">С</button></div></div>
+      <div class="verdict" id="v3"></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DECK -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Вопросы друг другу</h2>
+    <p class="sub">Колода на «ещё посидим». Тяни карточку — отвечаете оба.</p>
+    <div class="deck" id="deck">
+      <div class="dcard" id="dcard"><span class="dn" id="dn">?</span><span class="dq" id="dq">Нажми, чтобы вытянуть первую карточку</span></div>
+    </div>
+    <div class="drow"><button class="dbtn" id="dnext">Тянуть карточку</button><span class="dleft" id="dleft"></span></div>
+  </div>
+</section>
+
+<!-- MATCH -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Тест на совпадение</h2>
+    <p class="sub">Оба отвечаете на одни и те же вопросы. Потом сравниваем.</p>
+    <div class="quiz" id="match">
+      <div id="mIntro">
+        <p style="margin-bottom:14px">Как это работает: один отвечает, копирует ссылку и кидает другому. Второй открывает ссылку, отвечает — и видит процент совпадения.</p>
+        <div class="who-pick" id="mWho"><button data-w="Абдухаким">Я Абдухаким</button><button data-w="Юсуф">Я Юсуф</button></div>
+      </div>
+      <div id="mQ" hidden>
+        <div class="mprog" id="mProg"></div>
+        <div class="mq" id="mText"></div>
+        <div class="mopts" id="mOpts"></div>
+      </div>
+      <div id="mDone" hidden>
+        <div class="mres" id="mRes"></div>
+        <button class="dbtn" id="mCopy">Скопировать ссылку для друга</button>
+        <div class="mlink" id="mLink"></div>
+        <button class="mreset" id="mReset">Пройти заново</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPSULE -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Капсула времени</h2>
+    <p class="sub">Напиши пожелание или предсказание. Откроется только 15 сентября 2027.</p>
+    <div class="cap" id="cap">
+      <div id="capWrite">
+        <div class="who-pick" id="capWho"><button data-w="Абдухаким" class="on">Абдухаким</button><button data-w="Юсуф">Юсуф</button></div>
+        <textarea id="capText" rows="5" placeholder="Юсуф, через год мы…"></textarea>
+        <button class="dbtn" id="capSeal">Запечатать</button>
+      </div>
+      <div id="capLocked" hidden>
+        <div class="lock">🔒</div>
+        <div class="lockt">Капсула запечатана</div>
+        <div class="lockd" id="capMeta"></div>
+        <div class="lockc" id="capCd"></div>
+        <button class="dbtn" id="capCopy">Скопировать ссылку на капсулу</button>
+        <div class="mlink" id="capLink"></div>
+      </div>
+      <div id="capOpen" hidden>
+        <div class="lock">📜</div>
+        <div class="lockt" id="capFrom"></div>
+        <p class="captext" id="capMsg"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LETTER -->
+<section>
+  <div class="wrap">
+    <h2>Юсуфу</h2>
+    <p class="sub">Письмо, которое проще написать на сайте, чем сказать вслух.</p>
+    <div class="letter">
+      <p>Год назад, 15 сентября, я ещё не знал, что человек может столько раз за день написать слово «жирный» и при этом стать лучшим другом.</p>
+      <p>Спасибо за автобусы, за «ещё посидим», за то, что не изменял (по твоим словам), за мечеть и за то, что рядом. Пусть Аллах сохранит эту дружбу и в этой жизни, и в следующей.</p>
+      <p>Ещё посидим.</p>
+      <div class="sig">— Абдухаким</div>
+      <div class="stamp">проверено · true fat</div>
+    </div>
+  </div>
+</section>
+
+<footer>Сделано с любовью и мемами · 2025–2026</footer>
+<canvas class="confetti" id="cf"></canvas>
+
+<script>
+// ---------- dates ----------
+const START = new Date(2025,8,15,0,0,0);
+const ANNIV = new Date(2026,8,15,0,0,0);
+const pad=n=>String(n).padStart(2,'0');
+function tick(){
+  const now=new Date();
+  const d=Math.floor((now-START)/864e5);
+  document.getElementById('days').textContent=d;
+  const s=Math.floor((now-START)/1000);
+  document.getElementById('live').textContent=`это ${Math.floor(s/3600).toLocaleString('ru')} часов, ${Math.floor(s/60).toLocaleString('ru')} минут, ${s.toLocaleString('ru')} секунд`;
+  let diff=ANNIV-now; const c=document.getElementById('count');
+  if(diff<=0 && diff>-864e5){c.classList.add('today');document.getElementById('cTitle').textContent='Сегодня ровно год. С годовщиной!';document.getElementById('cTimer').innerHTML='';if(!c.dataset.fired){c.dataset.fired=1;boom(200)}return}
+  if(diff<0){diff+=365.25*864e5;document.getElementById('cTitle').textContent='До следующей годовщины'}
+  const dd=Math.floor(diff/864e5),hh=Math.floor(diff/36e5)%24,mm=Math.floor(diff/6e4)%60,ss=Math.floor(diff/1000)%60;
+  document.getElementById('cTimer').innerHTML=`<div><i>${dd}</i><small>дн</small></div><div><i>${pad(hh)}</i><small>ч</small></div><div><i>${pad(mm)}</i><small>мин</small></div><div><i>${pad(ss)}</i><small>сек</small></div>`;
+}
+tick();setInterval(tick,1000);
+
+// ---------- who ----------
+document.getElementById('swap').onclick=()=>document.getElementById('who').classList.toggle('swapped');
+
+// ---------- memes ----------
+document.querySelectorAll('.meme').forEach(m=>{m.tabIndex=0;const f=()=>m.classList.toggle('open');m.onclick=f;m.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();f()}}});
+let sit=0;const sitPhrases=['раз сказали «ещё посидим» за время просмотра этой страницы','а домой? — потом','мама звонила два раза','автобус ушёл. следующий через час','это уже не посидеть, это переезд','Юсуф, ты живёшь здесь теперь','рекорд. официально.'];
+document.getElementById('sitBtn').onclick=()=>{sit++;document.getElementById('sitN').textContent=sit;document.getElementById('sitP').textContent=sitPhrases[Math.min(Math.floor(sit/2),sitPhrases.length-1)];if(sit%10===0)boom(60)};
+
+
+// ---------- quiz ----------
+const Q=[
+ ['Жирный финкс','Ю'],['Вери биг жирного','А'],['Я тебе не изменял','Ю'],['Он в точь точь выглядит как твой друг бигинер','А'],
+ ['Ты жирного отцааа','Ю'],['Как у нас мог получится бигинер Бехруз','А'],['Я могу все объяснить','Ю'],['Так ты зе мост жирный','Ю'],
+ ['Зе мост жирного','А'],['Жирный, тупой, даун','А']
+];
+let qi=0,qs=0,qn=0;const qText=document.getElementById('qText'),qRes=document.getElementById('qRes'),qScore=document.getElementById('qScore');
+function showQ(){qText.textContent=Q[qi][0];qRes.textContent='';document.querySelectorAll('.qbtn button').forEach(b=>{b.className='';b.disabled=false})}
+document.querySelectorAll('.qbtn button').forEach(b=>b.onclick=()=>{
+  const ok=b.dataset.a===Q[qi][1];qn++;if(ok)qs++;
+  b.classList.add(ok?'ok':'no');document.querySelectorAll('.qbtn button').forEach(x=>{x.disabled=true;if(x.dataset.a===Q[qi][1])x.classList.add('ok')});
+  qRes.textContent=ok?'Верно. Ты их знаешь.':`Нет — это ${Q[qi][1]==='Ю'?'Юсуф':'Абдухаким'}.`;
+  qScore.textContent=`${qs} из ${qn}`+(qn===Q.length?(qs===Q.length?' — идеально, ты один из них':' — раунд закончен, начинаем заново'):'');
+  setTimeout(()=>{qi=(qi+1)%Q.length;if(qi===0){qs=0;qn=0}showQ()},1400);
+});
+showQ();
+
+// ---------- deen ----------
+const A=[
+ ['إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ','Воистину, верующие — братья.','Коран, 49:10'],
+ ['الْمَرْءُ عَلَى دِينِ خَلِيلِهِ فَلْيَنْظُرْ أَحَدُكُمْ مَنْ يُخَالِلُ','Человек следует религии своего близкого друга, так пусть каждый из вас смотрит, с кем он дружит.','Абу Дауд, ат‑Тирмизи'],
+ ['الْمُؤْمِنُ مِرْآةُ الْمُؤْمِنِ','Верующий — зеркало верующего.','Абу Дауд'],
+ ['وَرَجُلَانِ تَحَابَّا فِي اللَّهِ اجْتَمَعَا عَلَيْهِ وَتَفَرَّقَا عَلَيْهِ','…и двое, которые полюбили друг друга ради Аллаха: встречаются ради Него и расстаются ради Него.','из хадиса о семи, кого Аллах укроет в Своей тени — аль‑Бухари, Муслим'],
+ ['وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ','Помогайте друг другу в благочестии и богобоязненности.','Коран, 5:2']
+];
+let ai=0;const dots=document.getElementById('aDots');A.forEach(()=>dots.appendChild(document.createElement('i')));
+function showA(){document.getElementById('aAr').textContent=A[ai][0];document.getElementById('aRu').textContent=A[ai][1];document.getElementById('aSrc').textContent=A[ai][2];[...dots.children].forEach((d,i)=>d.classList.toggle('on',i===ai))}
+document.getElementById('aNext').onclick=()=>{ai=(ai+1)%A.length;showA()};showA();
+const D=[
+ ['بَارَكَ اللهُ فِيكَ','Баракаллаху фик — да благословит тебя Аллах.'],
+ ['اللَّهُمَّ احْفَظْ أَخِي','Аллахумма-хфаз ахи — О Аллах, сохрани моего брата.'],
+ ['جَزَاكَ اللهُ خَيْرًا','Джазакаллаху хайран — да воздаст тебе Аллах благом.'],
+ ['اللَّهُمَّ اجْمَعْنَا فِي الْجَنَّةِ','Аллахумма-джма\'на филь-джанна — О Аллах, собери нас вместе в Раю.'],
+ ['أُحِبُّكَ فِي اللهِ','Ухиббука филлях — я люблю тебя ради Аллаха.']
+];
+let di=0;document.getElementById('duaBtn').onclick=()=>{const o=document.getElementById('duaOut');o.innerHTML=`<span class="ar">${D[di][0]}</span>${D[di][1]}`;di=(di+1)%D.length};
+
+// ---------- confetti ----------
+const cv=document.getElementById('cf'),cx=cv.getContext('2d');let parts=[];
+function boom(n){cv.width=innerWidth;cv.height=innerHeight;for(let i=0;i<n;i++)parts.push({x:innerWidth/2,y:innerHeight/2,vx:(Math.random()-.5)*16,vy:(Math.random()-1.2)*16,c:['#C9A24B','#E7C978','#8E2B3A','#F7E7DF'][i%4],s:6+Math.random()*6,r:Math.random()*6.3,l:1});if(!boom.on){boom.on=1;requestAnimationFrame(loop)}}
+function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.l>0);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.r+=.1;p.l-=.012;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore()});if(parts.length)requestAnimationFrame(loop);else boom.on=0}
+document.getElementById('days').onclick=()=>boom(120);
+// ---------- science ----------
+(()=>{const $=id=>document.getElementById(id);
+const stamp=(n,t)=>{const s=$('st'+n);s.textContent=t;s.classList.add('done')};
+// case 1
+const jac=(a,b)=>{a=[...a.toLowerCase()];b=[...b.toLowerCase()];const A=new Set(a),B=new Set(b);const i=[...A].filter(x=>B.has(x)).length;const u=new Set([...A,...B]).size;return u?i/u:0};
+function sim(v){v=v.trim();const j=Math.round(jac(v,'оке')*100);$('simFill').style.width=j+'%';$('simPct').textContent=j+' %';
+ $('simNote').textContent=j===100?'— вот это «оке»':j>=50?'— похоже, засчитано':j>0?'— что-то общее есть, но нет':v.toLowerCase()==='с'?'— общих букв нет, общих звуков нет. Это предлог: с кем? с чем?':'— ничего общего';
+ $('v1').textContent=v.toLowerCase()==='с'?'Вердикт: «С» = 0 % «оке». Это предлог без существительного.':'';if(v.toLowerCase()==='с')stamp(1,'опровергнуто')}
+$('simIn').oninput=()=>sim($('simIn').value);
+document.querySelectorAll('.simchips button').forEach(b=>b.onclick=()=>{$('simIn').value=b.dataset.s;sim(b.dataset.s)});
+const script1=[['out','Что значит «С»?'],['in','оке'],['out','А почему не написать «оке»?'],['in','…'],['sys','Юсуф был в сети 40 минут назад'],['sys','Контраргументов не поступило']];
+$('ask1').onclick=()=>{const c=$('chat1');c.innerHTML='';script1.forEach((m,i)=>setTimeout(()=>{const d=document.createElement('div');d.className='bub '+m[0];d.textContent=m[1];c.appendChild(d);if(i===script1.length-1){$('v1').textContent='Вердикт: «С» ≠ «оке». Автор гипотезы ушёл в офлайн.';stamp(1,'опровергнуто')}},i*700+200))};
+// case 2
+$('uMorph').oninput=()=>{const v=+$('uMorph').value/100;$('uBase').style.opacity=v;$('uInk').style.opacity=1-v;$('uN').style.opacity=v;$('uS').style.opacity=v;$('tN').style.opacity=v>.5?1:0;$('tS').style.opacity=v>.5?1:0;$('fil').style.opacity=v>.9?1:0;
+ $('uNote').textContent=v===0?'Отличий: буква':v<.5?'Форма не изменилась. Только цвет.':v<1?'Ножки те же. Дуга та же. Уже притягивает.':'Отличий: 0. Это одна и та же форма.';if(v===1){$('v2').textContent='Вердикт: U — магнит. Магнит — намагниченная U.';stamp(2,'доказано')}};
+document.querySelectorAll('#kmb button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#kmb button').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('kmbFill').style.width=b.dataset.k+'%';$('kmbPct').textContent=b.dataset.k+' %';$('kmbT').textContent='— '+b.dataset.t});
+$('kmbFill').style.width='100%';document.querySelector('#kmb button').classList.add('on');
+// case 3
+$('tog7').onchange=()=>{const on=$('tog7').checked;$('week').classList.toggle('one',on);$('wNote').textContent=on?'Если 7 = 1 — в неделе один день. Суббота исчезла. Но мы в неё сидели. Противоречие.':'7 дней. Суббота на месте — мы в неё сидели.';if(on){$('v3').textContent='Вердикт: 7 ≠ да. Иначе нет субботы.';stamp(3,'опровергнуто')}};
+$('cEq').onclick=()=>{const a=+$('c1').value,b=+$('c2').value,o=$('cOut');o.textContent=(a===7||b===7)?`${a+b}. Если бы 7 было «да», получилось бы «дада». Получилось число.`:`${a+b}. Число. Как всегда.`};
+document.querySelectorAll('#chat3 .ans button').forEach(b=>b.onclick=()=>{const c=$('chat3');const d=document.createElement('div');d.className='bub out';d.textContent=b.dataset.a;c.insertBefore(d,c.querySelector('.ans'));const s=document.createElement('div');s.className='bub sys';
+ s.textContent=b.dataset.a==='да'?'Принято. Ждём одного человека.':b.dataset.a==='7'?'Ожидаем 7 человек. Пришло 0. Ответ не засчитан.':'Ответ незавершён: с кем? с чем?';c.insertBefore(s,c.querySelector('.ans'));if(b.dataset.a!=='да'){$('v3').textContent='Вердикт: 7 ≠ да. Ответ юридически ничтожен.';stamp(3,'опровергнуто')}});
+})();
+
+// ---------- stories ----------
+(()=>{const st=document.getElementById('story'),img=document.getElementById('simg'),cap=document.getElementById('scap'),bars=document.getElementById('sbars'),strip=document.getElementById('strip');
+let si=0,timer=null,hold=null;const DUR=4500;
+STORIES.forEach((s,i)=>{const b=document.createElement('i');b.innerHTML='<b></b>';bars.appendChild(b);const t=document.createElement('button');t.innerHTML=`<img src="${s.s}" alt="">`;t.onclick=()=>go(i);strip.appendChild(t)});
+function go(i){si=(i+STORIES.length)%STORIES.length;img.src=STORIES[si].s;cap.textContent=STORIES[si].c;
+ [...bars.children].forEach((b,j)=>{b.className=j<si?'done':j===si?'cur':'';if(j===si){const f=b.querySelector('b');f.style.animation='none';void b.offsetWidth;f.style.animation=''}});
+ [...strip.children].forEach((t,j)=>{t.classList.toggle('on',j===si);if(j===si)t.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})});
+ clearTimeout(timer);timer=setTimeout(()=>go(si+1),DUR);st.classList.remove('paused');document.getElementById('shint').style.opacity=si?0:1}
+const pause=()=>{st.classList.add('paused');clearTimeout(timer)};
+const resume=()=>{st.classList.remove('paused');const cur=bars.children[si];const done=parseFloat(getComputedStyle(cur.querySelector('b')).width)/cur.clientWidth;timer=setTimeout(()=>go(si+1),Math.max(300,DUR*(1-done)))};
+['sprev','snext'].forEach((id,k)=>{const z=document.getElementById(id);let long=false;
+ z.addEventListener('pointerdown',()=>{long=false;hold=setTimeout(()=>{long=true;pause()},250)});
+ z.addEventListener('pointerup',()=>{clearTimeout(hold);if(long){long=false;resume()}else go(si+(k?1:-1))});
+ z.addEventListener('pointerleave',()=>{clearTimeout(hold);if(long){long=false;resume()}});
+ z.addEventListener('contextmenu',e=>e.preventDefault())});
+go(0);
+if('IntersectionObserver' in window){new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){if(!timer)go(si)}else{clearTimeout(timer);timer=null;st.classList.add('paused')}})},{threshold:.3}).observe(st)}
+})();
+
+// ---------- deck ----------
+const DQ=['Какой момент за этот год ты запомнил сильнее всего?','Что во мне тебя бесит, но ты терпишь?','Кем мы будем через 10 лет и будем ли ещё «сидеть»?','Когда ты понял, что мы реально друзья, а не просто одноклассники?','Что бы ты сделал, если бы я вдруг пропал на месяц?','Какая моя привычка самая тупая?','Что ты обо мне думал в первый день, 15 сентября?','За что ты мне благодарен, но никогда не говорил?','Какое дуа ты бы сделал за меня прямо сейчас?','Если бы у нас был один общий бизнес — какой?','Какую мою фразу ты цитируешь чаще всего?','Что бы ты изменил в этом году, если бы мог?','Кто из нас первый женится? Аргументируй.','Какой самый честный совет ты можешь мне дать?','Что ты скрываешь от меня, потому что стыдно?','Куда мы должны обязательно съездить вдвоём?','Если бы мне нужен был ты ночью в 3 часа — что бы ты сделал?','Какой мем из нашего топа умрёт первым?','Какой я, когда меня никто не видит, по твоему мнению?','Что бы ты сказал мне через год, 15 сентября 2027?','В чём я лучше тебя? Честно.','В чём ты лучше меня? Ещё честнее.','Какое самое странное место, где мы «посидели»?','Что для тебя значит «брат» — и подхожу ли я под это?'];
+let dpool=[...DQ],dcount=0;
+const dcard=document.getElementById('dcard'),dq=document.getElementById('dq'),dn=document.getElementById('dn'),dleft=document.getElementById('dleft');
+function draw(){if(!dpool.length){dpool=[...DQ];dcount=0}const i=Math.floor(Math.random()*dpool.length);const q=dpool.splice(i,1)[0];dcount++;dcard.classList.remove('flip');void dcard.offsetWidth;dcard.classList.add('flip');setTimeout(()=>{dq.textContent=q;dn.textContent='Карточка '+dcount},220);dleft.textContent='осталось '+dpool.length}
+document.getElementById('dnext').onclick=draw;dcard.onclick=draw;
+
+// ---------- helpers ----------
+const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/=+$/,'');
+const dec=s=>{try{return JSON.parse(decodeURIComponent(escape(atob(s))))}catch(e){return null}};
+const baseUrl=()=>location.href.split('#')[0];
+async function copyLink(link,el){el.textContent=link;try{await navigator.clipboard.writeText(link);el.textContent='Скопировано. Отправь другу: '+link}catch(e){el.textContent='Скопируй вручную: '+link}}
+const hashParams={};location.hash.slice(1).split('&').forEach(kv=>{const[k,v]=kv.split('=');if(k)hashParams[k]=v});
+
+// ---------- match ----------
+const MQ=[
+ ['Кто первый пишет утром?',['Абдухаким','Юсуф','Никто, оба спим']],
+ ['Кто чаще опаздывает?',['Абдухаким','Юсуф','Оба одинаково']],
+ ['Наше главное место',['Автобус','Мечеть','Где угодно, лишь бы «посидеть»']],
+ ['Кто «батя» в этой дружбе?',['Абдухаким','Юсуф']],
+ ['Кто больше жирный (по мему)?',['Абдухаким','Юсуф','Бехруз']],
+ ['Идеальный вечер',['Посидеть и поговорить','Гулять по городу','Молчать, но рядом']],
+ ['Кто первый извиняется после ссоры?',['Абдухаким','Юсуф','Мы не ссоримся']],
+ ['Лучший мем из топ‑10',['Фай эркин','true fat','батя','ещё посидим']],
+ ['Через 10 лет мы',['Соседи','В разных странах, но на связи','Партнёры по бизнесу']],
+ ['Что важнее в нашей дружбе',['Смех','Вера','Что можно позвонить в 3 ночи']]
+];
+let mWho='',mAns=[],mi=0;const partner=hashParams.m?dec(hashParams.m):null;
+const $=id=>document.getElementById(id);
+$('mWho').querySelectorAll('button').forEach(b=>b.onclick=()=>{mWho=b.dataset.w;$('mIntro').hidden=true;$('mQ').hidden=false;mAns=[];mi=0;showM()});
+if(partner)$('mIntro').querySelector('p').textContent=`${partner.w} уже ответил(а). Теперь твоя очередь — ответь, и увидите совпадение.`;
+function showM(){$('mProg').textContent=`Вопрос ${mi+1} из ${MQ.length}`;$('mText').textContent=MQ[mi][0];const o=$('mOpts');o.innerHTML='';MQ[mi][1].forEach((t,j)=>{const b=document.createElement('button');b.textContent=t;b.onclick=()=>{mAns.push(j);mi++;if(mi<MQ.length)showM();else doneM()};o.appendChild(b)})}
+function doneM(){$('mQ').hidden=true;$('mDone').hidden=false;const r=$('mRes');const link=baseUrl()+'#m='+enc({w:mWho,a:mAns});
+  if(partner&&partner.w!==mWho){let same=0;let rows='';MQ.forEach((q,i)=>{const ok=partner.a[i]===mAns[i];if(ok)same++;rows+=`<div class="row"><b>${q[0]}</b><span class="${ok?'ok':'no'}">${ok?'совпало':MQ[i][1][partner.a[i]]+' / '+MQ[i][1][mAns[i]]}</span></div>`});
+    const pct=Math.round(same/MQ.length*100);r.innerHTML=`<div class="big">${pct}%</div><p style="margin-bottom:10px">${pct>=80?'Практически один человек.':pct>=50?'Норм. Но есть над чем «посидеть».':'Вы точно друзья? Ладно, противоположности притягиваются — магнит.'}</p>${rows}`;if(pct>=80)boom(120);$('mCopy').textContent='Скопировать ссылку с результатом'}
+  else{r.innerHTML=`<p>Готово, ${mWho}. Теперь отправь ссылку другу — когда он ответит, откроется совпадение.</p>`}
+  $('mCopy').onclick=()=>copyLink(link,$('mLink'))}
+$('mReset').onclick=()=>{$('mDone').hidden=true;$('mIntro').hidden=false;$('mLink').textContent=''};
+
+// ---------- capsule ----------
+const OPEN=new Date(2027,8,15,0,0,0);let capWho='Абдухаким';
+$('capWho').querySelectorAll('button').forEach(b=>b.onclick=()=>{$('capWho').querySelectorAll('button').forEach(x=>x.classList.remove('on'));b.classList.add('on');capWho=b.dataset.w});
+function showCap(c){const link=baseUrl()+'#c='+enc(c);$('capWrite').hidden=true;
+  if(new Date()>=OPEN){$('capOpen').hidden=false;$('capFrom').textContent=`От ${c.w}, запечатано ${c.d}`;$('capMsg').textContent=c.t;boom(150)}
+  else{$('capLocked').hidden=false;$('capMeta').textContent=`${c.w} · ${c.d} · откроется 15.09.2027`;const cd=()=>{const s=Math.max(0,OPEN-new Date());$('capCd').textContent=`${Math.floor(s/864e5)} дн ${String(Math.floor(s/36e5)%24).padStart(2,'0')}:${String(Math.floor(s/6e4)%60).padStart(2,'0')}:${String(Math.floor(s/1e3)%60).padStart(2,'0')}`};cd();setInterval(cd,1000);$('capCopy').onclick=()=>copyLink(link,$('capLink'))}}
+$('capSeal').onclick=()=>{const t=$('capText').value.trim();if(!t){$('capText').focus();return}const c={w:capWho,t,d:new Date().toLocaleDateString('ru')};try{localStorage.setItem('capsule',JSON.stringify(c))}catch(e){}showCap(c)};
+(()=>{let c=hashParams.c?dec(hashParams.c):null;if(!c){try{c=JSON.parse(localStorage.getItem('capsule'))}catch(e){}}if(c&&c.t)showCap(c)})();
+
+</script>
+</body>
+</html>
